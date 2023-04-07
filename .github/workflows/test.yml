@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Install adb
         run: sudo apt-get install -y adb
-      - run: docker run --rm --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest
-      - run: sleep 30
+      - run: docker run -d --name android --rm --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest
+      - run: sleep 5
+      - run: docker logs -f android
       - run: adb connect localhost:5555 && adb devices
