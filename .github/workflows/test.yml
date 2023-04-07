@@ -12,6 +12,6 @@ jobs:
       - run: sudo modprobe binder_linux devices="binder,hwbinder,vndbinder"
       - run: sudo modprobe ashmem_linux
       - run: docker run -d --name android --rm --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest
-      - run: sleep 5
-      - run: docker logs -f android
+      - run: sleep 20
+      - run: docker logs android
       - run: adb connect localhost:5555 && adb devices
