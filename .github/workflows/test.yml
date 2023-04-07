@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install adb
-        run: sudo apt-get install -y adb
+        run: sudo apt-get install -y adb linux-modules-extra-`uname -r`
+      - run: modprobe binder_linux devices="binder,hwbinder,vndbinder"
+      - run: modprobe ashmem_linux
       - run: docker run -d --name android --rm --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest
       - run: sleep 5
       - run: docker logs -f android
