@@ -13,5 +13,5 @@ jobs:
       - run: sudo modprobe ashmem_linux
       - run: docker run -d --name android --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest
       - run: sleep 30
-      - run: docker exec android -- logcat
+      - run: docker exec android logcat
       - run: adb connect localhost:5555 && adb devices
