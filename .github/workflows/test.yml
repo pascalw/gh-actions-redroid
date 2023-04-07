@@ -11,4 +11,4 @@ jobs:
         run: sudo apt-get install -y adb
       - run: docker run -itd --rm --privileged --pull always -p 5555:5555 redroid/redroid:13.0.0-latest &
       - run: sleep 30
-      - run: adb devices
+      - run: adb connect localhost:5555 && adb devices
